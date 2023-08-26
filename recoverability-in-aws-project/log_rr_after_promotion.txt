@@ -1,0 +1,40 @@
+Last login: Fri Aug 25 17:52:23 2023 from 58.187.190.26
+ubuntu@ip-10-2-10-173:~$ mysql -h database-readreplica.cddczwoi0f8p.us-west-2.rds.amazonaws.com -u admin udacity -p
+Enter password:
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.33 Source distribution
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> select * from Persons;
++----------+----------+-----------+--------------+------+
+| PersonID | LastName | FirstName | Address      | City |
++----------+----------+-----------+--------------+------+
+|        1 | Cao      | Fuong     | 1st Main str | HCMC |
++----------+----------+-----------+--------------+------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO Persons(PersonID, LastName, FirstName, Address, City)
+    -> VALUES(2, "Joac", "Kim", "2st Sub str", "HNC");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from Persons;
++----------+----------+-----------+--------------+------+
+| PersonID | LastName | FirstName | Address      | City |
++----------+----------+-----------+--------------+------+
+|        1 | Cao      | Fuong     | 1st Main str | HCMC |
+|        2 | Joac     | Kim       | 2st Sub str  | HNC  |
++----------+----------+-----------+--------------+------+
+2 rows in set (0.00 sec)
+
+mysql>

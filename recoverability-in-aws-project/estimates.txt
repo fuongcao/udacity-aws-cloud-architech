@@ -1,0 +1,21 @@
+* RTO (recovery time objective) is the targeted amount of time for a recovery to complete in the event of failure
+* RPO (recovery point objective) is the targeted amount of time during which data is at risk for loss in the event of a failure.
+
+----------------------------------------------------------------
+1. Minimum RTO for a single AZ outage: around 60s
+- With RDS Multi-AZ deployment. When it detects a failure, Amazon RDS automatically fails over to a standby instance without manual intervention. 
+A new primary is available to serve your new workload in as quickly as 60 seconds.
+2. Minimum RTO for a single region outage (40 ~ 60 minutes)
+- 00:00 - Problem happens (0 minutes)
+- 00:05 - An amount of time passes before an alert triggers (typicall 5 minutes base on alert configuration by SNS)
+- 00:06 - Alert triggers on-all staff (1 minutes)
+- 00:16 - Staff may need to get out of bed, get to a computer, log in, log onto VPN, Connect to AWS (10 minutes)
+- 00:21 - Staff starts diagnosing the issue, intend the the log would be available (5 minutes)
+- 00:26 - Root cause is discovered, the current region outage. (5 minutes)
+- 00:27 - Start Promote read replica RDS to production. (10 - 20 minutes)
+- 00:37 - Direct database traffic to the promoted DB instance. (5 minutes)
+- 00:41 minutes in total
+3. Minimum RPO  for a single AZ outage: 0s
+- With RDS Multi-AZ deployment, data synchronous writed to the standby EBS with zero data loss and no manual intervention.
+4. Minimum RPO for a single region outage: (Depend on RDS back up frequently)
+- For single AZ outage recovery. RPO should be depended on how often RDS backed up. If RDS backed up for every 2 hour, minimum RPO = 2 hours.

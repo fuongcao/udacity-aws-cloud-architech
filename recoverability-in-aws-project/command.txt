@@ -1,0 +1,15 @@
+cd recoverability-in-aws-project/stack/
+
+aws cloudformation create-stack --stack-name use1-vpc-stack \
+                                --template-body file://vpc.yaml \
+                                --tags Key=Name,Value=use1-primary-vpc \
+                                --region us-east-1 \
+                                --parameters file://primary-vpc.json \
+                                --capabilities CAPABILITY_AUTO_EXPAND CAPABILITY_IAM
+
+aws cloudformation update-stack --stack-name use1-vpc-stack \
+                                --template-body file://vpc.yaml \
+                                --tags Key=Name,Value=use1-primary-vpc \
+                                --region us-east-1 \
+                                --parameters file://primary-vpc.json \
+                                --capabilities CAPABILITY_AUTO_EXPAND CAPABILITY_IAM
