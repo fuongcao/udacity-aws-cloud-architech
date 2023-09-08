@@ -1,0 +1,61 @@
+No,AWS Services,Description,Region,Upfront,Monthly,Configuration,,
+1,Route 53,,US East (N. Virginia),0,$0.50 ,1 Host Zone ,$0.50 per hosted zone per month,
+2,CloudFront,,US East (N. Virginia),0,"$1,177.60 ","15 TB per Month
+150000 per hour, 110M request per month","Data Transfer Out to Internet: $0.085  First 10TB (The first 1,024 GB/month are free)
+Number of requests (HTTPS): The first 10 million requests/month are free","10240 GB x 0.0850000000 USD = 870.40 USD
+5120 GB x 0.0800000000 USD = 409.60 USD
+870.40 USD + 409.60 USD = 1280.00 USD (Data transfer out to internet from United States)
+110,000,000 requests x 0.000001 USD = 110.00 USD (HTTPS requests from United States)
+Total Monthly cost: 1,390.00 USD"
+3,Simple Storage Service (S3),,US East (N. Virginia),0,"$1,177.60 ",50 TB (S3 Standard - General purpose storage),First 50 TB $0.023 per GB,"51,200 GB x 0.023 USD = 1,177.6 USD"
+4,NAT Gateway,,US East (N. Virginia),0,$65.93 ,"NAT x2, 50GB through out per month","NAT Gateway Hourly Charge: $0.045 per hour, 
+NAT Gateway Data Processing Charge: $0.045 per GB through out","2 x 730 x 0.045USD = 65.7 USD (NAT Gateway Hourly Charge)
+50 x 0.045 USD = 0.225 (NAT Gateway Data Processing Charge)"
+5,Application Load Balancer,,US East (N. Virginia),0,$91.25 ,Application Load Balancers x2,"$0.0225 per Application Load Balancer-hour
+$0.008 per LCU-hour (or partial hour)","5 GB per hour / 1 GB processed bytes per hour per LCU for EC2 instances and IP addresses as targets = 5 processed bytes LCUs for EC2 instances and IP addresses as targets
+50 new connections per second / 25 new connections per second per LCU = 2 new connections LCUs
+50 new connections per second x 100 seconds = 5,000 active connections
+5,000 active connections / 3000 connections per LCU = 1.6666666666666667 active connections LCUs
+10 rules per request - 10 free rules = 0 paid rules per request after 10 free rules
+Max (0 USD, 0 USD) = 0.00 paid rules per request
+Max (5 processed bytes LCUs, 2 new connections LCUs, 1.6666666666666667 active connections LCUs, 0 rule evaluation LCUs) = 5 maximum LCUs
+2 load balancers x 5 LCUs x 0.008 LCU price per hour x 730 hours per month = 58.40 USD
+Application Load Balancer LCU usage charges (monthly): 58.40 USD
+Total Monthly cost: 91.25 USD"
+6,EC2,Web Server,US East (N. Virginia),0,"$1,056.23 ","Auto Scaling Group: Min(4) - Max(20)
+t3.large -> m5.large, Tenancy (Shared Instances), Operating system (Linux), 
+EC2 Compute Savings Plans (Monthly)","4 EC2 Compute Savings Plans
+16 EC2 On-Demand 8H per day","Amazon Elastic Block Store (EBS) total cost (Monthly): 8.00 USD
+Amazon EC2 Compute Savings Plans (Monthly): 367.92 USD
+Amazon EC2 On-Demand instances cost (Monthly): 669.65 USD
+Amazon Elastic Block Store (EBS) total cost (Monthly): 10.66 USDTotal: 375.92 USD + 680.31 USD = 517.79 USD"
+7,EC2,Application Server,US East (N. Virginia),0,"$1,056.23 ","Auto Scaling Group: Min(4) - Max(20)
+t3.large -> m5a.xlarge, Tenancy (Shared Instances), Operating system (Linux), 
+EC2 Compute Savings Plans (Monthly)","4 EC2 Compute Savings Plans
+16 EC2 On-Demand 8H per day","Amazon Elastic Block Store (EBS) total cost (Monthly): 8.00 USD
+Amazon EC2 Compute Savings Plans (Monthly): 367.92 USD
+Amazon EC2 On-Demand instances cost (Monthly): 669.65 USD
+Amazon Elastic Block Store (EBS) total cost (Monthly): 10.66 USDTotal: 375.92 USD + 680.31 USD = 517.79 USD"
+8,RDS,,US East (N. Virginia),0,"$13,550.56 ","MySQL - db.m5.4xlarge - Multi-AZ
+Storage: 1TB
+Backup Storage: 2TB
+1 master, 1 read-replication","Instance Cost: 0.7 USD hourly
+EBS Storage Cost:  0.115 USD per GB
+Additional backup storage Cost: 0.095 USD per GB
+Read replica Cost as an additional Amazon RDS for MySQL service.","RDS MySQL cost (Monthly): 1,997.28 USD
+Cost for RDS Performance Insights (Monthly): 29.12 USD
+Monthly Cost for RDS Proxy (Monthly): 175.20 USD
+Storage pricing (Monthly): 635.52 USD
+Backup storag+I9e cost (Monthly): 194.56 USD
+Total Monthly cost: 5,652.16 USD + 3x(1,997.28 USD + 635.52 USD) = 13,550.56 USD"
+9,CloudWatch,,US East (N. Virginia),0,$37.73 ,"Standard Logs: Data Ingested: 50GB
+Logs Delivered to S3: Data Ingested: 50GB",,CloudWatch Logs Ingested and Storage cost (Monthly): 37.73 USD
+,,,,Total Cost Estimate,"$18,213.63 ",,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,13550.56
+* To improve performce and redundancy need to apply change:,,,,,,,,
+,"Change Instance type of Web Server, Application Server from t3.large to m5a.xlarge",,,,,,,
+,Change RDS SSD from gp2 to General Purpose SSD (gp3) - IOPS 20000,,,,,,,
+,Apply RDS proxy,,,,,,,
+,Increase number of RDS read-replica from 1 to 3,,,,,,,
