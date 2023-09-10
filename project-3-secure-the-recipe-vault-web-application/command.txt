@@ -1,0 +1,23 @@
+cd project-3-secure-the-recipe-vault-web-application
+
+aws cloudformation create-stack --stack-name c3-s3 \
+                                --template-body file://starter/c3-s3.yml \
+                                --tags Key=Name,Value=c3-s3 \
+                                --region us-east-1 \
+                                --capabilities CAPABILITY_AUTO_EXPAND CAPABILITY_IAM
+
+aws cloudformation create-stack --stack-name c3-vpc \
+                                --template-body file://starter/c3-vpc.yml \
+                                --tags Key=Name,Value=c3-vpc \
+                                --region us-east-1 \
+                                --capabilities CAPABILITY_AUTO_EXPAND CAPABILITY_IAM
+
+aws cloudformation create-stack --stack-name c3-app \
+                                --template-body file://starter/c3-app.yml \
+                                --tags Key=Name,Value=c3-app \
+                                --region us-east-1 \
+                                --parameters ParameterKey=KeyPair,ParameterValue=recipe-webapp \
+                                --capabilities CAPABILITY_AUTO_EXPAND CAPABILITY_IAM
+
+aws s3 cp starter/free_recipe.txt s3://cand-c3-free-recipes-935281204728/ --region us-east-1
+aws s3 cp starter/secret_recipe.txt s3://cand-c3-secret-recipes-935281204728/ --region us-east-1

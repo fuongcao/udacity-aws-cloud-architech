@@ -1,0 +1,17 @@
+Answer the questions:
+1. What findings were detected related to the brute force attack?
+
+- (High) UnauthorizedAccess:EC2/SSHBruteForce: i-0d90bdae084df3af1 is performing SSH brute force attacks against 10.192.10.148. 
+Brute force attacks are used to gain unauthorized access to your instance by guessing the SSH password
+
+- (Low) UnauthorizedAccess:EC2/SSHBruteForce: 
+10.192.11.166 is performing SSH brute force attacks against i-07c1ababa47a3a11b. 
+Brute force attacks are used to gain unauthorized access to your instance by guessing the SSH password
+
+
+2. Research the AWS Guard Duty documentation page and explain how GuardDuty may have detected this attack - 
+i.e. what was its source of information?
+- How it works: Amazon GuardDuty is a threat detection service that continuously monitors your AWS accounts and workloads for malicious activity and 
+delivers detailed security findings for visibility and remediation.
+- Above case GuardDuty detected malicious activity by scanning Amazon VPC Flow Logs for login attempts on port 22 (SSH) and 
+found the attacker and target.

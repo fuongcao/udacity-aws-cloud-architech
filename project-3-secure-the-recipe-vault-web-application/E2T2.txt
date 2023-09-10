@@ -1,0 +1,7 @@
+Recommendations on how to remediate the vulnerabilities
+
+1. EC2 Security groups should not allow ingress from 0.0.0.0/0 to port 22 on EC2. For accessing, we should use Session Manager instead.
+2. WebAppSG should restricted ingress to port 5000 instead of from 0.0.0.0/0.
+3. WebAppSG Port range 0 to 65535 is reachable from an Internet Gateway - UDP. Remove this rule.
+4. VPC flow logging should be enabled in all VPCs => Enable VPC flow logging for all VPCs
+5. The VPC default security group should not allow inbound and outbound traffic => Update default SG of every VPC to restrict all traffic

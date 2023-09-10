@@ -1,0 +1,41 @@
+1. Identify tools that will allow you to do the following: 
+a. Scan infrastructure as code templates.
+Checkov (https://github.com/bridgecrewio/checkov).
+- scans cloud infrastructure provisioned using Terraform, Terraform plan, Cloudformation, AWS SAM, Kubernetes, Helm charts, Kustomize, 
+Dockerfile, Serverless, Bicep, OpenAPI or ARM Templates and detects security and compliance misconfigurations using graph-based scanning.
+- Scan of open source packages and images for Common Vulnerabilities and Exposures (CVEs). Common Vulnerabilities and Exposures (CVEs) 
+
+TFLint (https://github.com/terraform-linters/tflint)
+- Find possible errors (like invalid instance types) for Major Cloud providers (AWS/Azure/GCP).
+- Warn about deprecated syntax, unused declarations.
+- Enforce best practices, naming conventions.
+  
+CloudSploit (https://github.com/aquasecurity/cloudsploit)
+- detection of security risks in cloud infrastructure accounts, including: Amazon Web Services (AWS), Microsoft Azure, Google Cloud Platform (GCP), 
+Oracle Cloud Infrastructure (OCI), and GitHub. Return a series of potential misconfigurations and security risks.
+
+Trivy (https://github.com/aquasecurity/trivy)
+- Comprehensive and versatile security scanner.
+- IaC issues and misconfigurations, Sensitive information and secrets.
+
+b. Scan AMI’s or containers for OS vulnerabilities. 
+Clair (https://github.com/quay/clair)
+- Static analysis of vulnerabilities in application containers (currently including OCI and docker).
+
+Anchore (https://github.com/anchore/anchore-engine)
+- Container scanning and compliance. 
+- Inspection, analysis, and certification of container images
+
+Trivy (https://github.com/aquasecurity/trivy)
+- OS packages and software dependencies in use (SBOM), Known vulnerabilities (CVEs), Software licenses.
+
+c. Scan an AWS environment for cloud configuration vulnerabilities.
+AWS Config (https://aws.amazon.com/config/): Assess, audit, and evaluate configurations of your resources
+
+AWS Security Hub (https://aws.amazon.com/security-hub/): Automate AWS security checks and centralize security alerts
+
+AWS Inspector (https://aws.amazon.com/inspector/): Detect software vulnerabilities and unintended network exposure in near real time in AWS workloads such as 
+Amazon EC2, AWS Lambda functions, and Amazon ECR.
+
+AWS GuardDuty (https://aws.amazon.com/guardduty/): Continuously monitor your AWS accounts, instances, serverless and container workloads, users, databases, 
+and storage for potential threats.

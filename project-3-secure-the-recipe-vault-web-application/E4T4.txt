@@ -1,0 +1,16 @@
+1. What additional architectural change can be made to reduce the internet-facing attack surface of the web application instance.
+- Application Load Balancer should be reconfigure the Application Load Balancer to redirect all HTTP requests to HTTPS
+- Web-application EC2 instance shoulb be in private subnet, allow access internet through a NAT Gateway. 
+
+2. Assuming the IAM permissions for the S3 bucket are still insecure, would creating VPC private endpoints for S3 prevent 
+the unauthorized access to the secrets bucket.
+- The VPC private endpoints couldn't solve this. When attacker sat in VPC, they still access to s3 bucket. 
+
+3. Will applying default encryption setting to the s3 buckets encrypt the data that already exists?
+- The default encryption setting to the S3 buckets will not encrypt the data that already exists. 
+The existed data should be re-update to be encrypted.
+
+4. The changes you made above were done through the console or CLI; 
+describe the outcome if the original cloud formation templates are applied to this environment?
+- Cloudformation will not found that the changes have applied, so if the original cloud formation templates are applied, nothing will be updated.
+We should use cloudformation deploy instead of update command if need to reset the change to original cloud formation templates.

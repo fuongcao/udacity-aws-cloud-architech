@@ -1,0 +1,9 @@
+1. Identify 2-3 changes that can be made to our environment to prevent an SSH brute force attack from the internet.
+- Update the "WebAppSG" for alowing only ingress from "AppLoadBalancerSG"
+- Remove rule that allow SSH from WebAppSG. Should use "Session Manager" for remoting instead.
+- if need to keep using SSH, should disable SSH password login.
+
+2. Neither instance should have had access to the secret recipes bucket; even in the instance that API credentials 
+were compromised how could we have prevented access to sensitive data?
+- Restricted the S3 policy of c3-app-InstanceProfileRole role. Only alowing for access needed bucket and with read-only.
+- Enforce default encryption through S3 bucket policy
