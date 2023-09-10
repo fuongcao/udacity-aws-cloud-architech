@@ -1,6 +1,6 @@
  Identifying 2 poor security practices
  Poor Practice 1:
- - The Policy "InstanceRolePolicy-C3" have allow access allow all of S3 buckets that unnecessary and violate the least privilege principle. 
+ - The Policy "InstanceRolePolicy-C3" allow to access all of S3 buckets that unnecessary and violate the least privilege principle. 
  
  Poor Practice 2:
  - "AppLoadBalancerSG" have not HTTPListener RedirectConfig to 443 that would be exposed the critical vulnerability.
